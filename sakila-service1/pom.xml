@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.springcloud</groupId>
-    <artifactId>sakila-service</artifactId>
+    <artifactId>sakila-service1</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>sakila-service</name>
+    <name>sakila-service1</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>

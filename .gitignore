@@ -265,11 +265,9 @@ local.properties
 .scala_dependencies
 .worksheet
 
-/sakila-service/.mvn/
-/eureka-server/target/
-/eureka-server/eureka-server.iml
-/eureka-server/mvnw
-/eureka-server/mvnw.cmd
-/sakila-service/mvnw
-/sakila-service/mvnw.cmd
-/sakila-service/sakila-service.iml
+*.cmd
+*.iml
+*.mvn
+*/mvnw
+*/target
+
