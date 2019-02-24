@@ -20,7 +20,8 @@
     </properties>
 
     <modules>
-        <module>eureka-server1</module>
+        <module>eureka-server</module>
+		<module>eureka-server2</module>
         <module>sakila-service1</module>
         <module>sakila-consumer1</module>
     </modules>
