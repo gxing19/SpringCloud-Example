@@ -20,6 +20,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().formLogin()
                 .and().httpBasic();*/
         httpSecurity.csrf().ignoringAntMatchers("/eureka/**");
-//        super.configure(httpSecurity);
+        super.configure(httpSecurity);
     }
 }

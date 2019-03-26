@@ -1,19 +1,14 @@
-package com.springcloud.sakilaservice.controller;
+package com.springcloud.sakilaservice2.controller;
 
 import com.netflix.appinfo.InstanceInfo;
 import com.netflix.discovery.EurekaClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
-import java.util.Map;
 
 /**
  * @desc:
@@ -36,21 +31,15 @@ public class HomeController {
     @Autowired
     private Environment environment;
 
-    @Value("${server.port}")
-    private String serverPort;
-
-    @GetMapping("/port")
-    public String getPort() {
-        System.out.println(serverPort);
-        return "Server:" + serverPort;
-    }
 
     @GetMapping("/home")
     public String home() {
-        InstanceInfo instanceInfo = eurekaClient.getNextServerFromEureka("sakila-service1", false);
+        InstanceInfo instanceInfo = eurekaClient.getNextServerFromEureka("sakila-service2", false);
         String hostName = instanceInfo.getHostName();
         int port = instanceInfo.getPort();
         String appName = instanceInfo.getAppName();
+        String[] activeProfiles = environment.getActiveProfiles();
+        String[] defaultProfiles = environment.getDefaultProfiles();
 
         /*List<ServiceInstance> instances = discoveryClient.getInstances("eureka-server");
         String property1 = environment.getProperty("spring.cloud.client.hostname");
@@ -63,7 +52,7 @@ public class HomeController {
     }
 
     @GetMapping("/ribbon")
-    public String ribbon() {
-        return "service1 ribbon";
+    public String ribbon(){
+        return "service2 ribbon";
     }
 }
