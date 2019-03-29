@@ -1,7 +1,6 @@
 package com.springcloud.sakilaconsumer.controller;
 
 import com.google.common.collect.Lists;
-import com.netflix.discovery.converters.Auto;
 import com.netflix.loadbalancer.ILoadBalancer;
 import com.netflix.loadbalancer.LoadBalancerBuilder;
 import com.netflix.loadbalancer.Server;
@@ -9,14 +8,12 @@ import com.netflix.loadbalancer.reactive.LoadBalancerCommand;
 import com.netflix.loadbalancer.reactive.ServerOperation;
 import com.springcloud.sakilaconsumer.service.FeignInterface;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import rx.Observable;
 
-import javax.annotation.Resource;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -34,10 +31,15 @@ public class ConsumerController {
     @Autowired(required = false)
     private FeignInterface feignInterface;
 
+//    @HystrixCommand(fallbackMethod = "defaultCallHome")
     @GetMapping("/feign")
-    public String feignCall(){
+    public String feignCall() {
         String str = feignInterface.callHome();
         return str;
+    }
+
+    public String defaultCallHome() {
+        return "fail：调用失败，执行回退";
     }
 
     @GetMapping("/home")

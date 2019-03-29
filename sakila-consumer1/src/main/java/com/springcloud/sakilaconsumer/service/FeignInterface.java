@@ -1,5 +1,7 @@
 package com.springcloud.sakilaconsumer.service;
 
+import com.springcloud.sakilaconsumer.common.config.FeignCustomConfig;
+import com.springcloud.sakilaconsumer.service.impl.FeignInterfaceHystrixFactory;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -9,9 +11,10 @@ import org.springframework.web.bind.annotation.GetMapping;
  * @author: gxing
  * @date: 2019-03-25 10:37
  **/
-@FeignClient(name = "sakila-service1",path = "/service")
+@FeignClient(name = "${service.application.name.sakila-service}", path = "/service",
+        fallbackFactory = FeignInterfaceHystrixFactory.class, configuration = FeignCustomConfig.class)
 public interface FeignInterface {
 
     @GetMapping("/home")
-    public String callHome();
+    String callHome();
 }

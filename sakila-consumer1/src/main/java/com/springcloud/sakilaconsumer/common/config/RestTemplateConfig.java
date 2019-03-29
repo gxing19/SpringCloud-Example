@@ -1,5 +1,6 @@
 package com.springcloud.sakilaconsumer.common.config;
 
+import feign.Logger;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
