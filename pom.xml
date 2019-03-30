@@ -21,7 +21,6 @@
 
     <modules>
         <module>eureka-server</module>
-		<module>eureka-server2</module>
         <module>sakila-service1</module>
         <module>sakila-consumer1</module>
     </modules>
