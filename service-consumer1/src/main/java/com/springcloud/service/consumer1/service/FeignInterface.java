@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.GetMapping;
  * @author: gxing
  * @date: 2019-03-25 10:37
  **/
-@FeignClient(name = "${service.application.name.sakila-service}", path = "/service",
+@FeignClient(name = "${service.application.name.user}", path = "/instance",
         fallbackFactory = FeignInterfaceHystrixFactory.class, configuration = FeignCustomConfig.class)
 public interface FeignInterface {
 
-    @GetMapping("/home")
-    String callHome();
+    @GetMapping("/instanceInfo")
+    String instanceInfo();
 }

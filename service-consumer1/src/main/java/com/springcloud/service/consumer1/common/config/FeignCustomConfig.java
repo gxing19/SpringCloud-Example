@@ -2,9 +2,9 @@ package com.springcloud.service.consumer1.common.config;
 
 import feign.Logger;
 import feign.Request;
-import feign.auth.BasicAuthRequestInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
 /**
  * @name: FeignCustomConfig
@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
  * @author: gxing
  * @date: 2019-03-26 17:25
  **/
-@Configuration
+@Component
 public class FeignCustomConfig {
 
     @Bean
@@ -25,8 +25,8 @@ public class FeignCustomConfig {
         return new Request.Options(5000, 10000);
     }
 
-    @Bean
+    /*@Bean
     public BasicAuthRequestInterceptor basicAuthRequestInterceptor() {
         return new BasicAuthRequestInterceptor("admin", "123456");
-    }
+    }*/
 }

@@ -1,4 +1,4 @@
-package com.springcloud.sakilaservice;
+package com.springcloud.service.user;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

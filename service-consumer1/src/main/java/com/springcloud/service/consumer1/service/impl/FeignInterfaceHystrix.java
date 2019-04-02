@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 public class FeignInterfaceHystrix implements FeignInterface {
 
     @Override
-    public String callHome() {
+    public String instanceInfo() {
         return "fail：调用失败，执行回退";
     }
 }

@@ -16,7 +16,7 @@ public class FeignInterfaceHystrixFactory implements FallbackFactory<FeignInterf
     public FeignInterface create(Throwable throwable) {
         return new FeignInterface() {
             @Override
-            public String callHome() {
+            public String instanceInfo() {
                 return throwable.getMessage();
             }
         };
