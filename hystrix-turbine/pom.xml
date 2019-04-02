@@ -11,7 +11,7 @@
     <groupId>com.hystrix</groupId>
     <artifactId>hystrix-turbine</artifactId>
     <version>v1.0</version>
-    <name>turbine</name>
+    <name>hystrix-turbine</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
