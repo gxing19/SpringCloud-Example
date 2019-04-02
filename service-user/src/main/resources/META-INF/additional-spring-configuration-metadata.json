@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "spring.application.instance_id",
+      "type": "java.lang.String",
+      "description": "Description for spring.application.instance_id."
+  }
+] }
