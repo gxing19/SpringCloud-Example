@@ -21,8 +21,10 @@
 
     <modules>
         <module>eureka-server</module>
-        <module>sakila-service1</module>
-        <module>sakila-consumer1</module>
+        <module>service-order</module>
+        <module>service-user</module>
+        <module>service-consumer1</module>
+        <module>service-consumer2</module>
     </modules>
 
 </project>
