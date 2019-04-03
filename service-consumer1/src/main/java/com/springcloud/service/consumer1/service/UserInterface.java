@@ -3,7 +3,10 @@ package com.springcloud.service.consumer1.service;
 import com.springcloud.service.consumer1.common.config.FeignCustomConfig;
 import com.springcloud.service.consumer1.service.impl.UserInterfaceHystrixFactory;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.cloud.openfeign.SpringQueryMap;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.HashMap;
 
 /**
  * @name: UserInterface
@@ -16,5 +19,5 @@ import org.springframework.web.bind.annotation.GetMapping;
 public interface UserInterface {
 
     @GetMapping("/getUser")
-    String getUser();
+    String getUser(@SpringQueryMap HashMap<String, Integer> age);
 }
