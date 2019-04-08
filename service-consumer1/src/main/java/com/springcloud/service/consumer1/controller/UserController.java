@@ -33,6 +33,13 @@ public class UserController {
 
     @GetMapping("/getUser/{age}")
     public String getUser(@PathVariable Integer age, HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
+
+        String reqToken = request.getHeader("Token");
+        System.out.println("reqToken：" + reqToken);
+
+        String reqHeader = request.getHeader("Header");
+        System.out.println("reqHeader：" + reqHeader);
+
         HashMap<String, Integer> paramMap = new HashMap<>();
         paramMap.put("age", age);
 
@@ -41,9 +48,9 @@ public class UserController {
         Cookie cookie = new Cookie("user",URLEncoder.encode(user,"utf-8"));
         cookie.setMaxAge(20);
         response.addCookie(cookie);
-        response.setHeader("header", user);
+        response.setHeader("respHeader", user);
 
-        System.out.println(JSON.toJSONString(request.getCookies()));
+//        System.out.println(JSON.toJSONString(request.getCookies()));
 
         return user;
     }

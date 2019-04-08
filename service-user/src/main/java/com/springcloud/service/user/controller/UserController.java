@@ -32,9 +32,10 @@ public class UserController {
 
     @GetMapping("/getUser")
     public User getUser(Integer age, HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
+        String token = request.getHeader("Token");
+        System.out.println(token);
 
-        User user = new User()
-                .setId(1001).setAge(age).setRealName("张三").setPort(serverPort);
+        User user = new User().setId(1001).setAge(age).setRealName("张三").setPort(serverPort);
 
         String userStr = JSON.toJSONString(user);
         Cookie cookie = new Cookie("userCookie", URLEncoder.encode(userStr, "utf-8"));
