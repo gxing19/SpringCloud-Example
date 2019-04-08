@@ -1,5 +1,7 @@
 package com.springcloud.service.consumer1.entity;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import java.util.Date;
 
 /**
@@ -17,6 +19,7 @@ public class User {
     private String address;
     private Date birthday;
     private String msg;
+    private MultipartFile file;
 
     public User() {
     }
@@ -90,6 +93,15 @@ public class User {
 
     public User setMsg(String msg) {
         this.msg = msg;
+        return this;
+    }
+
+    public MultipartFile getFile() {
+        return file;
+    }
+
+    public User setFile(MultipartFile file) {
+        this.file = file;
         return this;
     }
 }
