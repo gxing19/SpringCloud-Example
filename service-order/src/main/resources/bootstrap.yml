@@ -1,0 +1,6 @@
+eureka:
+  instance:
+    metadata-map:
+      user: admin
+      password: 123456
+      configPath: /config
