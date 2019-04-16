@@ -1,4 +1,4 @@
-package com.springcloud.configserver.controller;
+package com.springcloud.service.order.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
@@ -7,23 +7,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @name: PropertyController
- * @desc: TODO
+ * @name: ConfigController
+ * @desc: 配置属性Controller
  * @author: gxing
- * @date: 2019-04-10 18:27
+ * @date: 2019-04-15 16:14
  **/
 @RestController
-@RequestMapping("/property")
-public class PropertyController {
+@RequestMapping("/config")
+public class ConfigController {
 
     @Autowired
     private Environment environment;
 
-    @GetMapping("/url")
-    public String getUrl(){
-        String gitUrl = environment.getProperty("spring.cloud.config.server.git.uri");
-
-        return gitUrl;
+    @GetMapping("/refresh")
+    public String refreshProperties(){
+        String appId = environment.getProperty("common.properties.app-id");
+        return appId;
     }
-
 }

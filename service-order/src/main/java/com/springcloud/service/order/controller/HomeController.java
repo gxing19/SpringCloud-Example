@@ -1,15 +1,5 @@
 package com.springcloud.service.order.controller;
 
-import com.netflix.appinfo.InstanceInfo;
-import com.netflix.discovery.EurekaClient;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.cloud.client.discovery.DiscoveryClient;
-import org.springframework.core.env.Environment;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 /**
  * @desc:
  * @author: gxing
@@ -17,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @param:
  * @return:
  **/
-@RestController
+/*@RestController
 @RequestMapping("/service")
 public class HomeController {
 
@@ -41,11 +31,11 @@ public class HomeController {
         String[] activeProfiles = environment.getActiveProfiles();
         String[] defaultProfiles = environment.getDefaultProfiles();
 
-        /*List<ServiceInstance> instances = discoveryClient.getInstances("eureka-server");
+        *//*List<ServiceInstance> instances = discoveryClient.getInstances("eureka-server");
         String property1 = environment.getProperty("spring.cloud.client.hostname");
         String property2 = environment.getProperty("spring.application.instance_id");
         String[] activeProfiles = environment.getActiveProfiles();
-        String string = property1 + property2;*/
+        String string = property1 + property2;*//*
 
 
         return hostName + port + appName;
@@ -55,4 +45,4 @@ public class HomeController {
     public String ribbon(){
         return "service2 ribbon";
     }
-}
+}*/
