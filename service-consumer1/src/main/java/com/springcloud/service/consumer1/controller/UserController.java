@@ -5,6 +5,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.springcloud.service.consumer1.service.UserInterface;
 import feign.Param;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,6 +29,7 @@ import java.util.HashMap;
 @RestController
 @RequestMapping("/user")
 public class UserController {
+    private static final Logger logger = LogManager.getLogger(UserController.class);
 
     @Autowired(required = false)
     private UserInterface userInterface;
