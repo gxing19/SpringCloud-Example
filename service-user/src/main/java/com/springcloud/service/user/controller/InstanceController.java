@@ -40,7 +40,7 @@ public class InstanceController {
 
     @GetMapping("/serverPort")
     public String serverPort() {
-        System.out.println(serverPort);
+//        System.out.println(serverPort);
         return "Server:" + serverPort;
     }
 

@@ -36,7 +36,7 @@ public class UserController {
 
     @GetMapping("/getUser/{age}")
     public String getUser(@PathVariable Integer age, HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
-
+        logger.info("age", age);
         /*String reqToken = request.getHeader("Token");
         System.out.println("reqToken：" + reqToken);
         String reqHeader = request.getHeader("Header");
