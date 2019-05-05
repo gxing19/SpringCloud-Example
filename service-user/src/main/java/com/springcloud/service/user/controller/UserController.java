@@ -33,6 +33,8 @@ public class UserController {
     public User getUser(Integer age, HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
         /*String token = request.getHeader("Token");
         System.out.println(token);*/
+        Enumeration<String> headerNames1 = request.getHeaderNames();
+        System.out.println(JSON.toJSONString(headerNames1));
 
         Enumeration<String> headerNames = request.getHeaderNames();
         while (headerNames.hasMoreElements()) {

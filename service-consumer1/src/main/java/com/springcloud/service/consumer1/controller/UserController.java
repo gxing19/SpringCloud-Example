@@ -7,6 +7,8 @@ import com.springcloud.service.consumer1.service.UserInterface;
 import feign.Param;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.ThreadContext;
+import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,12 +33,14 @@ import java.util.HashMap;
 public class UserController {
     private static final Logger logger = LogManager.getLogger(UserController.class);
 
+
     @Autowired(required = false)
     private UserInterface userInterface;
 
     @GetMapping("/getUser/{age}")
     public String getUser(@PathVariable Integer age, HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
         logger.info("age", age);
+
         /*String reqToken = request.getHeader("Token");
         System.out.println("reqToken：" + reqToken);
         String reqHeader = request.getHeader("Header");
