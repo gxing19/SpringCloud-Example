@@ -1,10 +1,14 @@
 package com.springcloud.service.order.controller;
 
+import com.springcloud.service.order.entity.CommonProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @name: ConfigController
@@ -14,14 +18,16 @@ import org.springframework.web.bind.annotation.RestController;
  **/
 @RestController
 @RequestMapping("/config")
-public class ConfigController {
+public class PropertyController {
 
+    @Autowired
+    private CommonProperties commonProperties;
     @Autowired
     private Environment environment;
 
-    @GetMapping("/refresh")
+    @GetMapping("/property")
     public String refreshProperties(){
-        String appId = environment.getProperty("common.properties.app-id");
-        return appId;
+        String envAppId = environment.getProperty("common.properties.app-id");
+        return commonProperties + "-----" + envAppId;
     }
 }
