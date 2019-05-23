@@ -25,6 +25,7 @@
         <module>service-user</module>
         <module>service-consumer1</module>
         <module>service-consumer2</module>
+        <module>stream-consumer</module>
     </modules>
 
 </project>
