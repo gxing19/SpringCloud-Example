@@ -23,7 +23,7 @@ import java.util.ArrayList;
  **/
 @RestController
 @RequestMapping("/ribbon")
-public class RibbonController {
+public class LoadBalanceController {
 
     private ILoadBalancer loadBalancer;
 

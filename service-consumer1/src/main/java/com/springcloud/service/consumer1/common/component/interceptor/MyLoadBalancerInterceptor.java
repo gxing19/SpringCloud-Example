@@ -1,4 +1,4 @@
-package com.springcloud.service.consumer1.common.component;
+package com.springcloud.service.consumer1.common.component.interceptor;
 
 import org.springframework.http.HttpRequest;
 import org.springframework.http.client.ClientHttpRequestExecution;

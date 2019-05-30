@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.UnsupportedEncodingException;
@@ -31,8 +32,9 @@ public class UserController {
 
     @GetMapping("/getUser")
     public User getUser(Integer age, HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
-        /*String token = request.getHeader("Token");
-        System.out.println(token);*/
+        String token = request.getHeader("Authorization");
+        System.out.println(token);
+
         Enumeration<String> headerNames1 = request.getHeaderNames();
         System.out.println(JSON.toJSONString(headerNames1));
 

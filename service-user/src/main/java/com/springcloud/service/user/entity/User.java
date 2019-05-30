@@ -1,5 +1,6 @@
 package com.springcloud.service.user.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -8,8 +9,9 @@ import java.util.Date;
  * @author: gxing
  * @date: 2019-04-02 14:33
  **/
-public class User {
+public class User implements Serializable {
 
+    private static final long serialVersionUID = -8741964769880352812L;
     private Integer id;
     private Integer age;
     private String realName;
