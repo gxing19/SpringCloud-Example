@@ -1,4 +1,4 @@
-package com.springcloud.service.user.common.bean;
+package com.springcloud.commons.bean;
 
 /**
  * @name: ResponseCode

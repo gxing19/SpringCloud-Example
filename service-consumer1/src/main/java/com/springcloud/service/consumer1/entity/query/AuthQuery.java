@@ -1,6 +1,7 @@
 package com.springcloud.service.consumer1.entity.query;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
 /**
@@ -15,7 +16,6 @@ public class AuthQuery {
 
     private String appId;
     private String secretKey;
-    private String token;
 
     public AuthQuery() {
     }
@@ -40,15 +40,6 @@ public class AuthQuery {
 
     public AuthQuery setSecretKey(String secretKey) {
         this.secretKey = secretKey;
-        return this;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public AuthQuery setToken(String token) {
-        this.token = token;
         return this;
     }
 }

@@ -2,6 +2,8 @@ package com.springcloud.gateway.controller;
 
 import com.springcloud.gateway.common.bean.ResultBean;
 import org.apache.commons.lang.StringUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.ErrorProperties;
 import org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.context.request.WebRequest;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,17 +26,25 @@ import java.util.Map;
  * @author: gxing
  * @date: 2019-04-09 10:37
  **/
+
 @RestController
 public class ErrorHandlerController implements ErrorController {
+
+    private static Logger logger = LogManager.getLogger(ErrorHandlerController.class);
+
 
     @Autowired
     private ErrorAttributes errorAttributes;
 
     @GetMapping("/error")
     public ResultBean error(HttpServletRequest request, HttpServletResponse response) {
-        RequestAttributes requestAttributes = new ServletRequestAttributes(request);
+        logger.info("进入 /error 控制器............................");
+
+        ServletWebRequest servletWebRequest = new ServletWebRequest(request);
+
         Map<String, Object> errorAttributes =
-                this.errorAttributes.getErrorAttributes((WebRequest) requestAttributes, true);
+                this.errorAttributes.getErrorAttributes(servletWebRequest, true);
+
         String message = (String) errorAttributes.get("message");
         String trace = (String) errorAttributes.get("trace");
         if (StringUtils.isNotBlank(trace)) {

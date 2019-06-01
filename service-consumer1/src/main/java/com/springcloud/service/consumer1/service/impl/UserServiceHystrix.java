@@ -1,6 +1,6 @@
 package com.springcloud.service.consumer1.service.impl;
 
-import com.springcloud.service.consumer1.service.UserInterface;
+import com.springcloud.service.consumer1.service.UserService;
 import feign.hystrix.FallbackFactory;
 import org.springframework.stereotype.Component;
 
@@ -13,10 +13,10 @@ import java.util.HashMap;
  * @date: 2019-04-02 14:52
  **/
 @Component
-public class UserInterfaceHystrixFactory implements FallbackFactory<UserInterface> {
+public class UserServiceHystrix implements FallbackFactory<UserService> {
     @Override
-    public UserInterface create(Throwable throwable) {
-        return new UserInterface() {
+    public UserService create(Throwable throwable) {
+        return new UserService() {
             @Override
             public String getUser(HashMap<String, Integer> age) {
                 return throwable.getMessage();

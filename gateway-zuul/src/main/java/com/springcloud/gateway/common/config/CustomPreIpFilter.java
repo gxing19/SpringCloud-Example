@@ -36,7 +36,7 @@ public class CustomPreIpFilter extends ZuulFilter {
     //示否执行该过滤器
     @Override
     public boolean shouldFilter() {
-        return true;
+        return false;
     }
 
     @Override

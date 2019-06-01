@@ -1,16 +1,11 @@
 package com.springcloud.service.consumer1.service.impl;
 
+import com.alibaba.fastjson.JSON;
+import com.springcloud.commons.bean.ResultBean;
 import com.springcloud.service.consumer1.entity.query.AuthQuery;
 import com.springcloud.service.consumer1.service.AuthService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import feign.hystrix.FallbackFactory;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * @name: AuthServiceImpl
@@ -19,13 +14,24 @@ import javax.servlet.http.HttpServletResponse;
  * @date: 2019-05-28 09:56
  **/
 @Service
-public class AuthServiceImpl implements AuthService {
+public class AuthServiceHystrix implements FallbackFactory<AuthService> {
 
-    @Autowired
+    @Override
+    public AuthService create(Throwable throwable) {
+        return new AuthService() {
+            @Override
+            public ResultBean getToken(AuthQuery authQuery) {
+                throwable.printStackTrace();
+                return new ResultBean().fial();
+            }
+        };
+    }
+
+    /*@Autowired
     private RestTemplate restTemplateOne;
 
     @Override
-    public String getToken(AuthQuery authQuery) {
+    public JwtToken getToken(AuthQuery authQuery) {
 
         String url = "http://localhost:9060/auth/token";
         ResponseEntity<String> exchange = restTemplateOne.exchange(url, HttpMethod.GET, null, String.class);
@@ -53,5 +59,5 @@ public class AuthServiceImpl implements AuthService {
         System.out.println("Token From Header : " + authorization);
 
         return token2;
-    }
+    }*/
 }

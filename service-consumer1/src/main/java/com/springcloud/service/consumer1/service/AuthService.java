@@ -1,9 +1,12 @@
 package com.springcloud.service.consumer1.service;
 
+import com.springcloud.commons.bean.ResultBean;
+import com.springcloud.service.consumer1.common.config.FeignCustomConfig;
 import com.springcloud.service.consumer1.entity.query.AuthQuery;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import com.springcloud.service.consumer1.service.impl.AuthServiceHystrix;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.cloud.openfeign.SpringQueryMap;
+import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  * @name: AuthService
@@ -11,9 +14,11 @@ import javax.servlet.http.HttpServletResponse;
  * @author: gxing
  * @date: 2019-05-28 09:56
  **/
+@FeignClient(name = "${service.application.name.jwt}", path = "/auth",
+        fallbackFactory = AuthServiceHystrix.class)
 public interface AuthService {
-    
-    String getToken(AuthQuery authQuery);
 
-    String getToken(AuthQuery authQuery, HttpServletRequest request, HttpServletResponse response);
+    @PostMapping("/token")
+    ResultBean getToken(@SpringQueryMap AuthQuery authQuery);
+
 }

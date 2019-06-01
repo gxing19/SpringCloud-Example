@@ -3,6 +3,7 @@ package com.springcloud.gateway.common.config;
 import jdk.nashorn.internal.ir.ReturnNode;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
 /**
  * @name: ZuulConfig
@@ -29,4 +30,9 @@ public class ZuulConfig {
     public ErrorFilter errorFilter(){
         return new ErrorFilter();
     }*/
+
+    @Bean
+    public TokenAuthPreFilter tokenAuthPreFilter(){
+        return new TokenAuthPreFilter();
+    }
 }

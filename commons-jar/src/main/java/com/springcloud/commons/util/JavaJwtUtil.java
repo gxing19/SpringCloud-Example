@@ -1,4 +1,4 @@
-package com.springcloud.jwt.common.util;
+package com.springcloud.commons.util;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
@@ -11,12 +11,14 @@ import java.util.Date;
 
 /**
  * @name: JavaJwtUtil
- * @desc: java_jwt 库工具类,创建签发验证token
+ * @desc: java_jwt 库工具类,签发验证token
  * @author: gxing
  * @date: 2019-05-27 11:11
  **/
 public class JavaJwtUtil {
 
+    /*默认有效期 1天 = 24小时*/
+    private static final Long END_DATETIME = System.currentTimeMillis() + 1000 * 60 * 1440;
     private static RSAPrivateKey rsaPrivateKey = RSAUtil.getPrivateKey(RSAUtil.MODULUS, RSAUtil.PRIVATE_EXPONENT);
     private static RSAPublicKey rsaPublicKey = RSAUtil.getPublicKey(RSAUtil.MODULUS, RSAUtil.PUBLIC_EXPONENT);
 
@@ -24,17 +26,14 @@ public class JavaJwtUtil {
     /**
      * HMAC256 算法签发Token
      *
-     * @param id    用户id
+     * @param jwtId    用户id
      * @param secret 密钥
      * @return String
      */
-    public static String getTokenByHMAC256(String id, String secret) {
-        /*默认一天有效期*/
-        Long endDateTime = System.currentTimeMillis() + 1000 * 60 * 1440;
-
+    public static String getTokenByHMAC256(String jwtId, String secret) {
         String token = JWT.create()
-                .withClaim("id", id)
-                .withExpiresAt(new Date(endDateTime))
+                .withClaim("jwtId", jwtId)
+                .withExpiresAt(new Date(END_DATETIME))
                 .sign(Algorithm.HMAC256(secret));
         return token;
     }
@@ -42,16 +41,16 @@ public class JavaJwtUtil {
     /**
      * HMAC256 算法签发Token
      *
-     * @param id    用户id
+     * @param jwtId    用户id
      * @param exp    过期时间,单位:分钟
      * @param secret 密钥
      * @return String
      */
-    public static String getTokenByHMAC256(String id, int exp, String secret) {
+    public static String getTokenByHMAC256(String jwtId, int exp, String secret) {
         Long endDateTime = System.currentTimeMillis() + 1000 * 60 * exp;
 
         String token = JWT.create()
-                .withClaim("id", id)
+                .withClaim("jwtId", jwtId)
                 .withExpiresAt(new Date(endDateTime))
                 .sign(Algorithm.HMAC256(secret));
         return token;
@@ -60,16 +59,14 @@ public class JavaJwtUtil {
     /**
      * RSA512 算法签发Token
      *
-     * @param id 用户ID
+     * @param jwtId 用户ID
      * @return String
      */
-    public static String getTokenByRSA512(String id) {
-        Long endDateTime = System.currentTimeMillis() + 1000 * 60 * 1440;
-
+    public static String getTokenByRSA512(String jwtId) {
         Algorithm algorithm = Algorithm.RSA512(rsaPublicKey, rsaPrivateKey);
         String token = JWT.create()
-                .withClaim("id", id)
-                .withExpiresAt(new Date(endDateTime))
+                .withClaim("jwtId", jwtId)
+                .withExpiresAt(new Date(END_DATETIME))
                 .sign(algorithm);
         return token;
     }
@@ -77,17 +74,17 @@ public class JavaJwtUtil {
     /**
      * RSA512 算法签发Token
      *
-     * @param id 用户id
+     * @param jwtId 用户id
      * @param exp 有效期
      * @return String
      */
-    public static String getTokenByRSA512(String id, int exp) {
+    public static String getTokenByRSA512(String jwtId, int exp) {
 
         Long endDateTime = System.currentTimeMillis() + 1000 * 60 * exp;
 
         Algorithm algorithm = Algorithm.RSA512(rsaPublicKey, rsaPrivateKey);
         String token = JWT.create()
-                .withClaim("id", id)
+                .withClaim("jwtId", jwtId)
                 .withExpiresAt(new Date(endDateTime))
                 .sign(algorithm);
         return token;
@@ -97,14 +94,14 @@ public class JavaJwtUtil {
      * 验证 HMAC256 Token
      *
      * @param token  令牌
-     * @param id    用户id
+     * @param jwtId    用户id
      * @param secret 密钥
      * @return boolean
      */
-    public static boolean verifyTokenByHMAC256(String token, String id, String secret) {
+    public static boolean verifyTokenByHMAC256(String token, String jwtId, String secret) {
 
         JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256(secret))
-                .withClaim("id", id).build();
+                .withClaim("jwtId", jwtId).build();
         return verifyToken(token, jwtVerifier);
     }
 
@@ -112,13 +109,13 @@ public class JavaJwtUtil {
      * 验证 RSA512 Token
      *
      * @param token 令牌
-     * @param id   用户ID
+     * @param jwtId   用户ID
      * @return boolean
      */
-    public static boolean verifyTokenByRSA512(String token, String id) {
+    public static boolean verifyTokenByRSA512(String token, String jwtId) {
 
         JWTVerifier jwtVerifier = JWT.require(Algorithm.RSA512(rsaPublicKey, rsaPrivateKey))
-                .withClaim("id", id).build();
+                .withClaim("jwtId", jwtId).build();
         return verifyToken(token, jwtVerifier);
     }
 
@@ -134,8 +131,8 @@ public class JavaJwtUtil {
             jwtVerifier.verify(token);
             return true;
         } catch (JWTVerificationException e) {
-            e.printStackTrace();
-            return false;
+            throw e;
+//            return false;
         }
     }
 

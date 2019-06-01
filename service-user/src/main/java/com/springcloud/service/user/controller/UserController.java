@@ -32,10 +32,8 @@ public class UserController {
 
     @GetMapping("/getUser")
     public User getUser(Integer age, HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
-        String token = request.getHeader("Authorization");
-        System.out.println(token);
 
-        Enumeration<String> headerNames1 = request.getHeaderNames();
+        /*Enumeration<String> headerNames1 = request.getHeaderNames();
         System.out.println(JSON.toJSONString(headerNames1));
 
         Enumeration<String> headerNames = request.getHeaderNames();
@@ -44,7 +42,7 @@ public class UserController {
             String headerValue = request.getHeader(headerName);
 
             System.out.println("headerName:" + headerName + "; headerValue:" + headerValue);
-        }
+        }*/
 
 
         User user = new User().setId(1001).setAge(age).setRealName("张三").setPort(serverPort);
@@ -54,7 +52,7 @@ public class UserController {
         cookie.setMaxAge(10);
         response.addCookie(cookie);
         response.setHeader("userHeader", userStr);*/
-        logger.info("user", JSON.toJSONString(user));
+        logger.info("user:{}", JSON.toJSONString(user));
         return user;
     }
 

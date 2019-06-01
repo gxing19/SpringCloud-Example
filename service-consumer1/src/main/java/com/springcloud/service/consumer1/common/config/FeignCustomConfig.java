@@ -1,11 +1,9 @@
 package com.springcloud.service.consumer1.common.config;
 
-import com.springcloud.service.consumer1.common.component.interceptor.FeignBasicAuthRequestInterceptor;
+import com.springcloud.service.consumer1.common.component.interceptor.FeignAuthRequestInterceptor;
 import feign.Logger;
 import feign.Request;
-import feign.auth.BasicAuthRequestInterceptor;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 /**
@@ -42,7 +40,7 @@ public class FeignCustomConfig {
      * @return
      */
     @Bean
-    public FeignBasicAuthRequestInterceptor feignBasicAuthRequestInterceptor(){
-        return new FeignBasicAuthRequestInterceptor();
+    public FeignAuthRequestInterceptor feignBasicAuthRequestInterceptor(){
+        return new FeignAuthRequestInterceptor();
     }
 }

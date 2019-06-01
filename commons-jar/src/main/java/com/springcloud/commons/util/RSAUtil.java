@@ -1,4 +1,4 @@
-package com.springcloud.jwt.common.util;
+package com.springcloud.commons.util;
 
 import javax.crypto.Cipher;
 import java.math.BigInteger;

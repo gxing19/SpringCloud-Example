@@ -1,4 +1,4 @@
-package com.springcloud.service.consumer1.common.bean;
+package com.springcloud.commons.bean;
 
 import java.io.Serializable;
 

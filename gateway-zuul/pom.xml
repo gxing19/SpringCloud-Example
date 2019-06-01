@@ -41,13 +41,13 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>1.2.47</version>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.retry</groupId>
             <artifactId>spring-retry</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.springcloud.commons</groupId>
+            <artifactId>commons-jar</artifactId>
+            <version>0.0.1</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

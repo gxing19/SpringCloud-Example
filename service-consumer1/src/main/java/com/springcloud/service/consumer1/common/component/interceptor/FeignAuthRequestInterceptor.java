@@ -9,9 +9,10 @@ import feign.RequestTemplate;
  * @author: gxing
  * @date: 2019-05-30 11:37
  **/
-public class FeignBasicAuthRequestInterceptor implements RequestInterceptor {
+public class FeignAuthRequestInterceptor implements RequestInterceptor {
     @Override
     public void apply(RequestTemplate requestTemplate) {
+        requestTemplate.header("JwtId", System.getProperty("jwtId"));
         requestTemplate.header("Authorization", System.getProperty("token"));
     }
 }
