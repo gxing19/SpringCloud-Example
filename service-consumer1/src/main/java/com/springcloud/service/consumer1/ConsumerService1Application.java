@@ -1,5 +1,6 @@
 package com.springcloud.service.consumer1;
 
+import com.spring4all.swagger.EnableSwagger2Doc;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.hystrix.EnableHystrix;
@@ -10,6 +11,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableFeignClients
 @EnableHystrix
 @EnableScheduling
+@EnableSwagger2Doc
 public class ConsumerService1Application {
 
     public static void main(String[] args) {

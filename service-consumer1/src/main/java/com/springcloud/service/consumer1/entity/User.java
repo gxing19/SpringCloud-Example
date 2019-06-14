@@ -1,7 +1,14 @@
 package com.springcloud.service.consumer1.entity;
 
+import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import java.util.Date;
 
 /**
@@ -10,15 +17,29 @@ import java.util.Date;
  * @author: gxing
  * @date: 2019-04-02 14:33
  **/
+@ApiModel(value = "com.springcloud.service.consumer1.entity.User", description = "用户参数")
 public class User {
 
+    @ApiModelProperty(value = "用户编号", required = true)
     private Integer id;
+    @ApiModelProperty(value = "用户年龄", required = true)
+    @Max(120)
+    @Min(18)
     private Integer age;
+    @ApiModelProperty(value = "真实姓名", required = false)
     private String realName;
+    @ApiModelProperty(value = "用户呢称", required = false)
     private String nickName;
+    @ApiModelProperty(value = "用户地址", required = false)
     private String address;
+    //    @ApiModelProperty(value = "用户生日", required = true)
+//    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date birthday;
+    @ApiModelProperty(value = "消息", required = true)
     private String msg;
+    @ApiModelProperty(value = "文件", required = true)
     private MultipartFile file;
 
     public User() {
