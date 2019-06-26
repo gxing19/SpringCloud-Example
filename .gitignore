@@ -271,3 +271,4 @@ local.properties
 */mvnw
 */target
 
+/logs/
