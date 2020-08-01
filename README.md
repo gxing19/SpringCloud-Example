@@ -1,6 +1,14 @@
 # SpringCloud-Example
 本项目包含了 Spring Cloud 系列组件的使用 Demo 集合，及在此 Demo 基础上的添加分布式应用系列实践：
 
+[系列文章地址](http://www.gxitsky.com/categories/Spring-Cloud系列/)：http://www.gxitsky.com/categories/Spring-Cloud系列/
+
+Blog：http://www.gxitsky.com/
+
+Github：https://github.com/gxing19/SpringCloud-Example
+
+Gitee：https://gitee.com/gxing19/SpringCloud-Example
+
 ##  Spring Cloud 系列组件 Demo
 1. Eureka 注册中心配置、集群、监控
 2. Ribbon 客户端负载均衡
