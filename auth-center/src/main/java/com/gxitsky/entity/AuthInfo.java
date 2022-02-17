@@ -11,7 +11,7 @@ import lombok.experimental.Accessors;
  **/
 @Data
 @Accessors(chain = true)
-public class AppInfo {
+public class AuthInfo {
 
     private Integer id;
     private String appId;
@@ -19,10 +19,10 @@ public class AppInfo {
     private String appName;
     private String appDesc;
 
-    public AppInfo() {
+    public AuthInfo() {
     }
 
-    public AppInfo(Integer id, String appId, String secret, String appName, String appDesc) {
+    public AuthInfo(Integer id, String appId, String secret, String appName, String appDesc) {
         this.id = id;
         this.appId = appId;
         this.secret = secret;

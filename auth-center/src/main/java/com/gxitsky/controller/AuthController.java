@@ -3,9 +3,9 @@ package com.gxitsky.controller;
 import com.alibaba.fastjson.JSON;
 import com.gxitsky.bean.JwtToken;
 import com.gxitsky.bean.ResultBean;
-import com.gxitsky.entity.AppInfo;
+import com.gxitsky.entity.AuthInfo;
 import com.gxitsky.entity.AuthRequest;
-import com.gxitsky.service.AppInfoService;
+import com.gxitsky.service.AuthInfoService;
 import com.gxitsky.util.JavaJwtUtil;
 import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.LogManager;
@@ -30,7 +30,7 @@ public class AuthController {
     private Logger logger = LogManager.getLogger(AuthController.class);
 
     @Autowired
-    private AppInfoService appInfoService;
+    private AuthInfoService authInfoService;
 
     /**
      * 签发 Token
@@ -49,8 +49,8 @@ public class AuthController {
         }
 
         //根据appId 和 secret 到数据库查询
-        AppInfo appInfo = appInfoService.queryAppInfo(authRequest);
-        if (appInfo == null) {
+        AuthInfo authInfo = authInfoService.query(authRequest);
+        if (authInfo == null) {
             return new ResultBean().failByNullParam().setMsg("auth fail");
         }
 

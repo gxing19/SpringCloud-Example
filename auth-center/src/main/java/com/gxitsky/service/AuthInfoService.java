@@ -1,6 +1,6 @@
 package com.gxitsky.service;
 
-import com.gxitsky.entity.AppInfo;
+import com.gxitsky.entity.AuthInfo;
 import com.gxitsky.entity.AuthRequest;
 
 /**
@@ -9,7 +9,7 @@ import com.gxitsky.entity.AuthRequest;
  * @author: gxing
  * @date: 2019-05-27 14:45
  **/
-public interface AppInfoService {
+public interface AuthInfoService {
     
     /**
     * @desc: 用户认证
@@ -18,5 +18,5 @@ public interface AppInfoService {
     * @param: [authQuery]
     * @return: void
     **/
-    AppInfo queryAppInfo(AuthRequest authQuery);
+    AuthInfo query(AuthRequest authQuery);
 }
