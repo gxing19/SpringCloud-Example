@@ -1,4 +1,4 @@
-package com.springcloud.shardingjdbc;
+package com.gxitsky;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

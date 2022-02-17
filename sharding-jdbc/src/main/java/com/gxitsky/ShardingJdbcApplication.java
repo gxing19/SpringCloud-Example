@@ -1,4 +1,4 @@
-package com.springcloud.shardingjdbc;
+package com.gxitsky;
 
 import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure;
 import org.springframework.boot.SpringApplication;

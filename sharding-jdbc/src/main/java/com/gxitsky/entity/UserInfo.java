@@ -1,4 +1,4 @@
-package com.springcloud.shardingjdbc.entity;
+package com.gxitsky.entity;
 
 import org.springframework.data.annotation.Id;
 

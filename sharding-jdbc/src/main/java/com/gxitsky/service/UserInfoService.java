@@ -1,6 +1,6 @@
-package com.springcloud.shardingjdbc.service;
+package com.gxitsky.service;
 
-import com.springcloud.shardingjdbc.entity.UserInfo;
+import com.gxitsky.entity.UserInfo;
 
 import java.util.List;
 
