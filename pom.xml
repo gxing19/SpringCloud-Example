@@ -39,6 +39,7 @@
         <module>service-user</module>
         <module>sharding-jdbc</module>
         <module>sharding-table</module>
+        <module>stream-producer</module>
         <module>stream-consumer</module>
         <module>zipkin-server</module>
     </modules>
