@@ -1,12 +1,12 @@
 package com.gxitsky.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.gxitsky.bean.JwtToken;
+import com.gxitsky.bean.ResultBean;
 import com.gxitsky.entity.AppInfo;
 import com.gxitsky.entity.query.AuthQuery;
-import com.springcloud.commons.bean.JwtToken;
-import com.springcloud.commons.bean.ResultBean;
-import com.springcloud.commons.util.JavaJwtUtil;
 import com.gxitsky.service.AppInfoService;
+import com.gxitsky.util.JavaJwtUtil;
 import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -42,7 +42,7 @@ public class AuthController {
     @RequestMapping("/token")
     public ResultBean getToken(AuthQuery authQuery, HttpServletRequest request, HttpServletResponse response) {
         logger.info("authQuery:{}", JSON.toJSONString(authQuery));
-        logger.info("JwtId:{},Authorization:{}",request.getHeader("JwtId"),request.getHeader("Authorization"));
+        logger.info("JwtId:{},Authorization:{}", request.getHeader("JwtId"), request.getHeader("Authorization"));
 
         if (StringUtils.isBlank(authQuery.getAppId()) || StringUtils.isBlank(authQuery.getSecretKey())) {
             return new ResultBean().fialByNullParam().setMsg("appId and secretKey must not null");
@@ -54,7 +54,7 @@ public class AuthController {
             return new ResultBean().fialByNullParam().setMsg("auth fail");
         }
 
-        String jwtId =Long.toString(System.currentTimeMillis());
+        String jwtId = Long.toString(System.currentTimeMillis());
         //1440分钟=24小时
         String token = JavaJwtUtil.getTokenByRSA512(jwtId, 1440);
 
