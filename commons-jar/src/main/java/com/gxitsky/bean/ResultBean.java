@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * @name: ResultBean
- * @desc: TODO
+ * @desc: 统一响应体
  * @author: gxing
  * @date: 2019-05-27 14:06
  **/
@@ -38,19 +38,19 @@ public class ResultBean implements Serializable {
         return this;
     }
 
-    public ResultBean fial() {
+    public ResultBean fail() {
         this.state = STATE_FAIL;
         this.code = CODE_FAIL;
         return this;
     }
 
-    public ResultBean fialByNullParam() {
+    public ResultBean failByNullParam() {
         this.state = STATE_FAIL;
         this.code = ResponseCode.PARAM_IS_NULL;
         return this;
     }
 
-    public ResultBean fialByErrorParam() {
+    public ResultBean failByErrorParam() {
         this.state = STATE_FAIL;
         this.code = ResponseCode.PARAM_IS_ERROR;
         return this;

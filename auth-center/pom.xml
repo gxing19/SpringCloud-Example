@@ -8,10 +8,10 @@
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>jwt-server</artifactId>
+    <artifactId>auth-center</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
-    <name>jwt-server</name>
+    <name>auth-center</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>

@@ -33,7 +33,7 @@
         <module>gateway-zuul</module>
         <module>guava-server</module>
         <module>hystrix-turbine</module>
-        <module>jwt-server</module>
+        <module>auth-center</module>
         <module>service-consumer1</module>
         <module>service-consumer2</module>
         <module>service-order</module>
@@ -44,5 +44,14 @@
         <module>stream-consumer</module>
         <module>zipkin-server</module>
     </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.22</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 
 </project>

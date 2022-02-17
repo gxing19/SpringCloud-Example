@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.gxitsky.bean.JwtToken;
 import com.gxitsky.bean.ResultBean;
 import com.gxitsky.entity.AppInfo;
-import com.gxitsky.entity.query.AuthQuery;
+import com.gxitsky.entity.AuthRequest;
 import com.gxitsky.service.AppInfoService;
 import com.gxitsky.util.JavaJwtUtil;
 import org.apache.commons.lang.StringUtils;
@@ -35,23 +35,23 @@ public class AuthController {
     /**
      * 签发 Token
      *
-     * @param authQuery 认证参数
+     * @param authRequest 认证参数
      * @param response  响应
      * @return ResultBean
      */
     @RequestMapping("/token")
-    public ResultBean getToken(AuthQuery authQuery, HttpServletRequest request, HttpServletResponse response) {
-        logger.info("authQuery:{}", JSON.toJSONString(authQuery));
+    public ResultBean getToken(AuthRequest authRequest, HttpServletRequest request, HttpServletResponse response) {
+        logger.info("authQuery:{}", JSON.toJSONString(authRequest));
         logger.info("JwtId:{},Authorization:{}", request.getHeader("JwtId"), request.getHeader("Authorization"));
 
-        if (StringUtils.isBlank(authQuery.getAppId()) || StringUtils.isBlank(authQuery.getSecretKey())) {
-            return new ResultBean().fialByNullParam().setMsg("appId and secretKey must not null");
+        if (StringUtils.isBlank(authRequest.getAppId()) || StringUtils.isBlank(authRequest.getSecret())) {
+            return new ResultBean().failByNullParam().setMsg("appId and secretKey must not null");
         }
 
-        //根据appId 和 secretKey 到数据库查询
-        AppInfo appInfo = appInfoService.queryAppInfo(authQuery);
+        //根据appId 和 secret 到数据库查询
+        AppInfo appInfo = appInfoService.queryAppInfo(authRequest);
         if (appInfo == null) {
-            return new ResultBean().fialByNullParam().setMsg("auth fail");
+            return new ResultBean().failByNullParam().setMsg("auth fail");
         }
 
         String jwtId = Long.toString(System.currentTimeMillis());
@@ -76,7 +76,7 @@ public class AuthController {
         String jwtId = request.getHeader("jwtId");
         boolean verify = JavaJwtUtil.verifyTokenByRSA512(token, jwtId);
         if (!verify) {
-            return new ResultBean().fial().setMsg("Token 验证失败");
+            return new ResultBean().fail().setMsg("Token 验证失败");
         }
         return new ResultBean().success();
     }

@@ -1,7 +1,7 @@
 package com.gxitsky.service;
 
 import com.gxitsky.entity.AppInfo;
-import com.gxitsky.entity.query.AuthQuery;
+import com.gxitsky.entity.AuthRequest;
 
 /**
  * @name: AuthService
@@ -18,5 +18,5 @@ public interface AppInfoService {
     * @param: [authQuery]
     * @return: void
     **/
-    AppInfo queryAppInfo(AuthQuery authQuery);
+    AppInfo queryAppInfo(AuthRequest authQuery);
 }
